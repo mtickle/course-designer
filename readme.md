@@ -12,5 +12,4 @@ npm install
 npm start
 ```
 
-
-WOW OK
+I dont wnna use node
