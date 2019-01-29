@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRCD v5</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href=css/bootstrap.css rel=stylesheet>
+  <link href=css/animate.min.css rel=stylesheet>
+  <link href=css/app.css rel=stylesheet>
+</head>
+
+<body ng-app="">
+  <div class="container">
+    <!--- MAIN NAVBAR -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">CRCD v5</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#" class="active" id="openDesigner">Designer</a></li>
+            <li><a href="#" id="openCourseLibrary">Course Library</a></li>
+            <li><a href="#" id="openObjectTally">Object Tally</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--- END NAVBAR -->
+
+    <!-- This is the container for the designer -->
+    <div id="designerContainer">
+      <div class="row">
+        <div class="col-lg-2" id="sidebar">
+          <div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fileHeader">
+                <h4 class="panel-title">
+                  <span class="glyphicon glyphicon-floppy-disk"></span>
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#filePanel">File</a>
+                </h4>
+              </div>
+              <div id="filePanel" class="panel-collapse collapse in" role="tabpanel">
+                <div class="panel-body">
+                  
+                  <!--<button type="button" class="btn btn-default btn-block" id="btnAddTab"><span class="glyphicon glyphicon-plus"></span> Add Tab</a></li>-->
+                  <button type="button" class="btn btn-default btn-block" id="exportToJSON" style="display:none;"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save </button>
+                  <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#createACourseModal"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Save As ... </button>
+                  <button type="button" class="btn btn-default btn-block" id="exportToPNG"><span class="glyphicon glyphicon-picture"></span> Export </button>                 
+                  <div id="currentTabId" class="label label-default">#tab1</div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFive">
+                <h4 class="panel-title">
+                  <span class="glyphicon glyphicon-th"></span>
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseGridOptions">Grid Options</a>
+                </h4>
+              </div>
+              <div id="collapseGridOptions" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <div class="form-group form-group-sm">
+                    <label for="topBottomMeasureMode">Vertical</label>
+                    <select class="form-control" id="topBottomMeasureMode">
+                      <option>Top</option>
+                      <option>Center</option>
+                      <option selected="selected">Bottom</option>
+                    </select>
+                    <br />
+                    <label for="leftRightMeasureMode">Horizontal</label>
+                    <select class="form-control" id="leftRightMeasureMode">
+                      <option>Left</option>
+                      <option selected="selected">Center</option>
+                      <option>Right</option>
+                    </select>
+                    <br />
+                    <label for="gridWidth">Grid Width (in feet)</label>
+                    <input type="text" class="form-control" id="gridWidth" placeholder="100" value="100" />
+                    <br />
+                    <label for="gridWidth">Grid Height (in feet)</label>
+                    <input type="text" class="form-control" id="gridHeight" placeholder="100" value="100" />
+                  </div>
+                  <button type="button" id="redrawGrid" class="btn btn-primary btn-block">Redraw Grid</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <span class="glyphicon glyphicon-briefcase"></span>
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Toolbox</a>
+                </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  <button type="button" id="removeSelected" class="btn btn-primary btn-block">Remove Selected</button>
+                  <button type="button" id="addAFrame" class="btn btn-default btn-block">A-frame</button>
+                  <button type="button" id="addDogwalk" class="btn btn-default btn-block">Dog Walk</button>
+                  <div class="btn-group btn-block">
+                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">Bar Jumps <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Non-Winged Jump</a></li>
+                      <li><a href="#">Non-Winged Single-Bar Jump</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Winged Jump</a></li>
+                      <li><a href="#">Winged Single-Bar Jump</a></li>
+                    </ul>
+                  </div>
+                  <div class="btn-group btn-block">
+                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">Spread Jumps <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Triple Jump</a></li>
+                      <li><a href="#">Double Jump</a></li>
+                      <li><a href="#">Broad Jump</a></li>
+                    </ul>
+                  </div>
+                  <div class="btn-group btn-block">
+                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">Tunnels <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">10 feet</a></li>
+                      <li><a href="#">15 feet</a></li>
+                      <li><a href="#">20 feet</a></li>
+                    </ul>
+                  </div>
+                  <button type="button" id="addSeesaw" class="btn btn-default btn-block" disabled="disabled">Seesaw</button>
+                  <button type="button" id="addPauseTable" class="btn btn-default btn-block" disabled="disabled">Pause Table</button>
+                  <button type="button" id="addWeavePoles" class="btn btn-default btn-block" disabled="disabled">Weave Poles</button>
+                  <button type="button" id="addPanelJump" class="btn btn-default btn-block" disabled="disabled">Panel Jump</button>
+                  <button type="button" id="addTireJump" class="btn btn-default btn-block" disabled="disabled">Tire Jump</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <span class="glyphicon glyphicon-cog"></span>
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Admin Tools</a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <button type="button" class="btn btn-danger btn-sm" id="wipeLocalStorage">
+                  <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>Wipe Local Storage 
+                  </button>
+                  <br><br>
+                  <button type="button" class="btn btn-info btn-sm" id="removeLines">
+                  <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>Remove All Lines
+                  </button>
+                  <br><br>
+                  <button type="button" class="btn btn-info btn-sm" id="removeNumbers">
+                  <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>Remove All Numbers
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--<div class="btn-group-vertical">
+            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-th"></span></button>
+            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-briefcase"></span></button>
+            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-cog"></span></button>
+            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-step-forward"></span></button>
+          </div>-->
+        </div>
+        <div class="col-lg-10" id="content">
+          <div>
+            <!-- Nav tabs -->
+                  <p>
+        <!--<button id="btn-add-tab" type="button" class="btn btn-primary pull-right">Add Tab</button>-->
+        <button type="button" class="btn btn-default pull-right" id="btnAddTab"><span class="glyphicon glyphicon-plus"></span> Add Tab</button>
+      </p>
+            <ul class="nav nav-tabs" role="tablist" id="tabs">
+              <li role="presentation" class="active" id="tab_tab1"><a href="#tab1" role="tab" data-toggle="tab">Course 1&nbsp;<button class="close" type="button" title="Remove this page">×</button></a></li>
+            </ul>
+            <div class="tab-content" id="tab-content">
+              <div class="tab-pane active" id="tab1">
+                <h4>
+                  <span id="fileClubName">Course 1</span><span id="fileCourseLevelAndClass"></span><span id="fileEventDate"></span></h4>
+                  <div class="designer" id="designer">
+                  <div id="tab1CourseId" class="label label-default"></div>
+                  <canvas id="tab1Canvas"></canvas>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Designer container -->
+      <!-- This is the containter for the course library -->
+      <div id="courseLibraryContainer" style="display:none;">
+        <p>Here are all your saved courses. You can open or delete them.</p>
+        <table id="courseLibraryTable" class="table table-hover">
+          <thead>
+            <th>Saved Date</th>
+            <th>Level</th>
+            <th>Class</th>
+            <th>Club</th>
+            <th>Event Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!-- End course library container -->
+      <!--- Here is the object tally list -->
+      <div id="objectTallyContainer" style="display:none;">
+        <p>Here are all objects on the field</p>
+        <table id="objectTable" class="table table-hover">
+          <thead>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Description</th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!--- End object tally -->
+    </div>
+
+
+
+    <!--- Small modal for ABOUT modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Clean Run Course Designer v5.0</h4>
+          </div>
+          <div class="modal-body">
+            &copy; 2016 Agility Partners, LLC<br /> Licensed to Clean Run Productions, Inc.<br /> CRCD v5 utilizes:<br>
+            <ul>
+              <li><a href="https://github.com/kangax/fabric.js">fabric.js</a></li>
+              <li><a href="https://github.com/jquery/jquery">jQuery</a></li>
+              <li><a href="https://github.com/twbs/bootstrap">bootstrap</a></li>
+              <li><a href="https://github.com/ehpc/bootstrap-waitingfor">bootstrap-waitingfor</a></li>
+              <li><a href="https://github.com/wenzhixin/bootstrap-table">bootstrap-table</a></li>
+              <li><a href="https://github.com/mouse0270/bootstrap-notify">bootstrap-notify</a></li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- End ABOUT modal -->
+        <div class="modal fade" id="dontDoThat" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">You Can't Do That</h4>
+          </div>
+          <div class="modal-body">
+                That thing you just tried? You can't do that. Try something else.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- Small modal for COURSE MAP PREVIEW -->
+    <div class="modal fade" id="previewFromLocalStorage" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Preview Course</h4>
+          </div>
+          <div class="modal-body">
+            <center>
+              <canvas id="preview"></canvas>
+            </center>
+            <div id="modalCourseId" class="label label-default"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="btnOpenFromLocalStorage" class="btn btn-primary" data-dismiss="modal">Open in Designer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- End COURSE MAP PREVIEW modal -->
+    <!--- Small modal for DELETING FROM LOCAL STORAGE -->
+    <div class="modal fade" id="deleteFromLocalStorage" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Delete Course Map from Local Storage</h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete the selected course map from local storage?
+            <input type="text" class="form-control" id="deleteCourseId" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="btnDeleteFromLocalStorage" class="btn btn-primary" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- End DELETING FROM LOCAL STORAGE modal -->
+    <div class="modal fade" id="maximumTabCount" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Maximum Tab Count Reached</h4>
+          </div>
+          <div class="modal-body">
+            You can only create a maximum of five tabs. Please close some tabs and try again.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- Small modal for SUBMITTING FOR REVIEW -->
+    <div class="modal fade" id="submitForReview" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Submit Course Map for Review</h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to submit the selected course map into the review workflow queue?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="btnSubmitForReview" class="btn btn-primary" data-dismiss="modal">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- End SUBMITTING FOR REVIEW modal -->
+
+    <!--- Small modal for closing a tab -->
+    <div class="modal fade" id="closeTabModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Close This Tab?</h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to close this tab? (This doesn't actually work)
+          </div>
+          <div id="localTabId"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="btnClearTheCourse" class="btn btn-primary" data-dismiss="modal">Close Tab</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- end closing tab modal -->
+
+    <!--- Small modal for CLEARING THE COURSE -->
+    <div class="modal fade" id="clearTheCourseModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Clear the Course?</h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to clear the course?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="btnClearTheCourse" class="btn btn-primary" data-dismiss="modal">Clear the Course</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- End ABOUT modal -->
+    <!--- Small modal for DELETING A COURSE FROM LOCAL STORAGE -->
+    <div class="modal fade" id="deleteTheCourseFromLocalStorageModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Delete this Course?</h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this course from local storage?
+            <div id="localCourseId"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="btnDeleteTheCourseFromLocalStorage" class="btn btn-primary" data-dismiss="modal">Delete Course from Local Storage</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- End ABOUT modal -->
+    <!-- Modal for CREATING A COURSE -->
+    <div class="modal fade" id="createACourseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Course Map Properties</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <form role="form" id="saveCourseForm">
+                <label for="sel1">Organization:</label>
+                <select class="form-control" id="orgName">
+                      <option>AKC Agility</option>
+                      <option>Barn Hunt Association</option>
+                      <option>World Cynosport Rally Limited</option>
+                    </select>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="gridWidth">Club Name</label>
+                  <input type="text" class="form-control" id="clubName" value="Carolina Piedmont Agility Club" placeholder="Carolina Piedmont Agility Club"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="gridWidth">Event Date</label>
+                  <input type="text" class="form-control" id="eventDate" value="11/23/2016" placeholder="11/23/2016" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="sel1">Level:</label>
+                  <select class="form-control" id="levelName">
+                      <option>Novice</option>
+                      <option>Open</option>
+                      <option>Excellent</option>
+                      <option>Masters</option>
+                      <option>Premier</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="sel1">Class:</label>
+                  <select class="form-control" id="className">
+                      <option>Standard</option>
+                      <option>JWW</option>
+                      <option>FAST</option>
+                      <option>T2B</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="comment">Comments:</label>
+              <textarea class="form-control" rows="3" id="comments"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" id="btnSaveProperties" class="btn btn-primary" data-dismiss="modal">Save</button>
+            <button type="submit" id="btnSaveAsNew" class="btn btn-default" data-dismiss="modal">Save As New Course Map</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for GRID OPTIONS -->
+  </div>
+  <p>&nbsp;</p>
+  <!--- SCRIPTS LOAD HERE. DON'T MESS WITH THIS OR YOU WILL ANGER ELECTRON -->
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
+  <script src='js/fabric.js'></script>
+  <script src='js/angular.min.js'></script>
+  <script src='js/fabricExtensions.js'></script>
+  <script src='js/jquery.min.js'></script>
+  <script src='js/waitingfor.js'></script>
+  <script src='js/bootstrap.min.js'></script>
+  <script src="js/bootstrap-notify.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/crcd.js"></script>
+  <script src="js/crcd_fileops.js"></script>
+  <script src="js/crcd_utils.js"></script>
+  <script src="js/crcd_tabs.js"></script>
+  <script src="js/obstacles.js"></script>
+  <script>
+    if (window.module) module = window.module;
+  </script>
+</body>
+
+</html>

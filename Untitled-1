@@ -1,0 +1,22 @@
+            <ul class="nav navbar-nav">
+              <li class="dropdown" id="fileDropdown" style="display:none;">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">File<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" data-toggle="modal" data-target="#createACourseModal">New Course Design</a></li>
+                  <li><a href="#" id="exportToJSON">Save Course Design</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#clearTheCourseModal">Clear the course</a></li>
+                  <li><a href="#" id="exportToPNG">Download image</a></li>
+                </ul>
+              </li>
+              <li class="dropdown" id="toolboxDropdown" style="visibility:none;">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Toolbox<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header">Obstacles</li>
+                  <li><a href="#">A-Frame</a></li>
+                  <li><a href="#">Dog Walk</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#" data-toggle="modal" data-target="#gridOptionsModal">Grid Options</a></li>
+                </ul>
+              </li>
+            </ul>
