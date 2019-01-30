@@ -6,36 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CRCD v5</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-  
-  <!-- <link href=css/bootstrap.css rel=stylesheet>
-  <link href=css/animate.min.css rel=stylesheet> -->
-  
   <link href=css/app.css rel=stylesheet>
 </head>
 
-<body ng-app="">
+<body>
   <div class="container">
     <!--- MAIN NAVBAR -->
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">CRCD v5</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="#" class="active" id="openDesigner">Designer</a></li>
-            <li><a href="#" id="openCourseLibrary">Course Library</a></li>
-            <li><a href="#" id="openObjectTally">Object Tally</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item"><a class="nav-link" href="#" id="openDesigner">Designer</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#" id="openCourseLibrary">Course Library</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#" id="openObjectTally">Object Tally</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+              </ul>
+            </div>
+      </nav>
     <!--- END NAVBAR -->
+
+    <br>
 
     <!-- This is the container for the designer -->
     <div id="designerContainer">
@@ -52,7 +50,10 @@
                   </div>              
                   <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                        File
+                        <button type="button" class="btn btn-light btn-block" id="btnAddTab">Add Tab</a></li>
+                          <button type="button" class="btn btn-light btn-block" id="exportToJSON">Save</button>
+                          <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#createACourseModal">Save As ... </button>
+                          <button type="button" class="btn btn-light btn-block" id="exportToPNG"> Export </button>                 
                     </div>
                   </div>
                 </div>
@@ -65,7 +66,28 @@
                   </div>
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                      Grid options
+                        <div class="form-group form-group-sm">
+                            <label for="topBottomMeasureMode">Vertical</label>
+                            <select class="form-control" id="topBottomMeasureMode">
+                              <option>Top</option>
+                              <option>Center</option>
+                              <option selected="selected">Bottom</option>
+                            </select>
+                            <br />
+                            <label for="leftRightMeasureMode">Horizontal</label>
+                            <select class="form-control" id="leftRightMeasureMode">
+                              <option>Left</option>
+                              <option selected="selected">Center</option>
+                              <option>Right</option>
+                            </select>
+                            <br />
+                            <label for="gridWidth">Grid Width (in feet)</label>
+                            <input type="text" class="form-control" id="gridWidth" placeholder="100" value="100" />
+                            <br />
+                            <label for="gridWidth">Grid Height (in feet)</label>
+                            <input type="text" class="form-control" id="gridHeight" placeholder="100" value="100" />
+                          </div>
+                          <button type="button" id="redrawGrid" class="btn btn-primary btn-block">Redraw Grid</button>
                     </div>
                   </div>
                 </div>
@@ -107,30 +129,7 @@
                           <div id="tab1CourseId" class="label label-default"></div>
                           <canvas id="tab1Canvas"></canvas>
                         </div> 
-                    </div>
-
-
-
-
-
-
-
-
-            <!-- <ul class="nav nav-tabs" role="tablist" id="tabs">
-              <li class="nav-item">
-                  <a class="nav-link active" id="tab1" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">Course 1
-                  <button class="close" type="button" title="Remove this page">×</button>
-                </a>
-              </li>
-            </ul>
-            <div class="tab-content" id="tab-content">
-              <div class="tab-pane active" id="tab1">
-                <h4>
-                  <span id="fileClubName">Course 1</span><span id="fileCourseLevelAndClass"></span><span id="fileEventDate"></span></h4>
-                  <div class="designer" id="designer">
-                  <div id="tab1CourseId" class="label label-default"></div>
-                  <canvas id="tab1Canvas"></canvas> -->
-                  
+                    </div>                  
                 </div>
               </div>
             </div>
@@ -181,8 +180,7 @@
     <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div class="modal-header">            
             <h4 class="modal-title" id="myModalLabel">Clean Run Course Designer v5.0</h4>
           </div>
           <div class="modal-body">
