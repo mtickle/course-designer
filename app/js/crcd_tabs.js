@@ -44,7 +44,7 @@
 
     //--- Create the tab
     var tabLabel = "Course " + nextTab;
-    var tabString = '<li role="presentation" id="tab_' + tabId + '">';
+    var tabString = '<li class="nav-item">';
     tabString += '<a href="#' + tabId + '" role="tab" data-toggle="tab">';
     tabString += tabLabel + '&nbsp;'
     tabString += '<button class="close" type="button" title="Remove this page">×</button>'

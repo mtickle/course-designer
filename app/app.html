@@ -41,146 +41,20 @@
     <div id="designerContainer">
       <div class="row">
         <div class="col-lg-2" id="sidebar">
-          <div class="panel-group" id="accordion" role="tablist">
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="fileHeader">
-                <h4 class="panel-title">
-                  <span class="glyphicon glyphicon-floppy-disk"></span>
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#filePanel">File</a>
-                </h4>
-              </div>
-              <div id="filePanel" class="panel-collapse collapse in" role="tabpanel">
-                <div class="panel-body">
-                  
-                  <!--<button type="button" class="btn btn-default btn-block" id="btnAddTab"><span class="glyphicon glyphicon-plus"></span> Add Tab</a></li>-->
-                  <button type="button" class="btn btn-default btn-block" id="exportToJSON" style="display:none;"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save </button>
-                  <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#createACourseModal"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Save As ... </button>
-                  <button type="button" class="btn btn-default btn-block" id="exportToPNG"><span class="glyphicon glyphicon-picture"></span> Export </button>                 
-                  <div id="currentTabId" class="label label-default">#tab1</div>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingFive">
-                <h4 class="panel-title">
-                  <span class="glyphicon glyphicon-th"></span>
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseGridOptions">Grid Options</a>
-                </h4>
-              </div>
-              <div id="collapseGridOptions" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  <div class="form-group form-group-sm">
-                    <label for="topBottomMeasureMode">Vertical</label>
-                    <select class="form-control" id="topBottomMeasureMode">
-                      <option>Top</option>
-                      <option>Center</option>
-                      <option selected="selected">Bottom</option>
-                    </select>
-                    <br />
-                    <label for="leftRightMeasureMode">Horizontal</label>
-                    <select class="form-control" id="leftRightMeasureMode">
-                      <option>Left</option>
-                      <option selected="selected">Center</option>
-                      <option>Right</option>
-                    </select>
-                    <br />
-                    <label for="gridWidth">Grid Width (in feet)</label>
-                    <input type="text" class="form-control" id="gridWidth" placeholder="100" value="100" />
-                    <br />
-                    <label for="gridWidth">Grid Height (in feet)</label>
-                    <input type="text" class="form-control" id="gridHeight" placeholder="100" value="100" />
-                  </div>
-                  <button type="button" id="redrawGrid" class="btn btn-primary btn-block">Redraw Grid</button>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <span class="glyphicon glyphicon-briefcase"></span>
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Toolbox</a>
-                </h4>
-              </div>
-              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                  <button type="button" id="removeSelected" class="btn btn-primary btn-block">Remove Selected</button>
-                  <button type="button" id="addAFrame" class="btn btn-default btn-block">A-frame</button>
-                  <button type="button" id="addDogwalk" class="btn btn-default btn-block">Dog Walk</button>
-                  <div class="btn-group btn-block">
-                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">Bar Jumps <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Non-Winged Jump</a></li>
-                      <li><a href="#">Non-Winged Single-Bar Jump</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Winged Jump</a></li>
-                      <li><a href="#">Winged Single-Bar Jump</a></li>
-                    </ul>
-                  </div>
-                  <div class="btn-group btn-block">
-                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">Spread Jumps <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Triple Jump</a></li>
-                      <li><a href="#">Double Jump</a></li>
-                      <li><a href="#">Broad Jump</a></li>
-                    </ul>
-                  </div>
-                  <div class="btn-group btn-block">
-                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown">Tunnels <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">10 feet</a></li>
-                      <li><a href="#">15 feet</a></li>
-                      <li><a href="#">20 feet</a></li>
-                    </ul>
-                  </div>
-                  <button type="button" id="addSeesaw" class="btn btn-default btn-block" disabled="disabled">Seesaw</button>
-                  <button type="button" id="addPauseTable" class="btn btn-default btn-block" disabled="disabled">Pause Table</button>
-                  <button type="button" id="addWeavePoles" class="btn btn-default btn-block" disabled="disabled">Weave Poles</button>
-                  <button type="button" id="addPanelJump" class="btn btn-default btn-block" disabled="disabled">Panel Jump</button>
-                  <button type="button" id="addTireJump" class="btn btn-default btn-block" disabled="disabled">Tire Jump</button>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <span class="glyphicon glyphicon-cog"></span>
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Admin Tools</a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  <button type="button" class="btn btn-danger btn-sm" id="wipeLocalStorage">
-                  <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>Wipe Local Storage 
-                  </button>
-                  <br><br>
-                  <button type="button" class="btn btn-info btn-sm" id="removeLines">
-                  <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>Remove All Lines
-                  </button>
-                  <br><br>
-                  <button type="button" class="btn btn-info btn-sm" id="removeNumbers">
-                  <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>Remove All Numbers
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--<div class="btn-group-vertical">
-            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-floppy-disk"></span></button>
-            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-th"></span></button>
-            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-briefcase"></span></button>
-            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-cog"></span></button>
-            <button type="button" id="test1" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-step-forward"></span></button>
-          </div>-->
+
         </div>
         <div class="col-lg-10" id="content">
           <div>
             <!-- Nav tabs -->
                   <p>
-        <!--<button id="btn-add-tab" type="button" class="btn btn-primary pull-right">Add Tab</button>-->
-        <button type="button" class="btn btn-default pull-right" id="btnAddTab"><span class="glyphicon glyphicon-plus"></span> Add Tab</button>
-      </p>
+                      <button type="button" class="btn btn-light btn-sm float-right" id="btnAddTab"> Add Tab</button>
+                  </p>
             <ul class="nav nav-tabs" role="tablist" id="tabs">
-              <li role="presentation" class="active" id="tab_tab1"><a href="#tab1" role="tab" data-toggle="tab">Course 1&nbsp;<button class="close" type="button" title="Remove this page">×</button></a></li>
+              <li class="nav-item">
+                  <a class="nav-link active" id="tab1" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">Course 1
+                  <button class="close" type="button" title="Remove this page">×</button>
+                </a>
+              </li>
             </ul>
             <div class="tab-content" id="tab-content">
               <div class="tab-pane active" id="tab1">
@@ -197,6 +71,9 @@
         </div>
       </div>
       <!-- END Designer container -->
+
+
+
       <!-- This is the containter for the course library -->
       <div id="courseLibraryContainer" style="display:none;">
         <p>Here are all your saved courses. You can open or delete them.</p>
