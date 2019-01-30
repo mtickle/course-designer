@@ -42,14 +42,81 @@
       <div class="row">
         <div class="col-lg-2" id="sidebar">
 
+            <div class="accordion" id="accordionExample">
+
+              <div class="card">
+                  <div class="card-header pt-0 pb-0 pl-1" id="headingOne">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        File
+                      </button>
+                  </div>              
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        File
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header pt-0 pb-0 pl-1" id="headingTwo">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Grid Options
+                      </button>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                      Grid options
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header pt-0 pb-0 pl-1" id="headingThree">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Toolbox
+                      </button>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                      Tools
+                    </div>
+                  </div>
+                </div>
+              </div>
+
         </div>
         <div class="col-lg-10" id="content">
-          <div>
-            <!-- Nav tabs -->
-                  <p>
-                      <button type="button" class="btn btn-light btn-sm float-right" id="btnAddTab"> Add Tab</button>
-                  </p>
-            <ul class="nav nav-tabs" role="tablist" id="tabs">
+
+                  <button type="button" class="btn btn-light btn-sm float-right" id="btnAddTab"> Add Tab</button>
+
+                  <ul class="nav nav-tabs" id="tabs" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="tab1" data-toggle="tab" href="#panel1" role="tab" aria-controls="tab1" aria-selected="true">Course 1 
+                      
+                      &nbsp;<button type="button" class="close" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+                    </a>
+                    </li>
+                  </ul>
+
+                  <div class="tab-content" id="tab-content">
+                    <div class="tab-pane fade show active" id="panel1" role="tabpanel" aria-labelledby="tab1">
+                        <span id="fileClubName">Course 1</span>
+                        <span id="fileCourseLevelAndClass"></span>
+                        <span id="fileEventDate"></span>                        
+                        <div class="designer" id="designer">
+                          <div id="tab1CourseId" class="label label-default"></div>
+                          <canvas id="tab1Canvas"></canvas>
+                        </div> 
+                    </div>
+
+
+
+
+
+
+
+
+            <!-- <ul class="nav nav-tabs" role="tablist" id="tabs">
               <li class="nav-item">
                   <a class="nav-link active" id="tab1" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">Course 1
                   <button class="close" type="button" title="Remove this page">×</button>
@@ -62,7 +129,7 @@
                   <span id="fileClubName">Course 1</span><span id="fileCourseLevelAndClass"></span><span id="fileEventDate"></span></h4>
                   <div class="designer" id="designer">
                   <div id="tab1CourseId" class="label label-default"></div>
-                  <canvas id="tab1Canvas"></canvas>
+                  <canvas id="tab1Canvas"></canvas> -->
                   
                 </div>
               </div>
@@ -140,7 +207,6 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">You Can't Do That</h4>
           </div>
           <div class="modal-body">
@@ -198,7 +264,6 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Maximum Tab Count Reached</h4>
           </div>
           <div class="modal-body">

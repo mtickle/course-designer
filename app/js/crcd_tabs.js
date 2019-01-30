@@ -24,17 +24,22 @@
     $(tabID).remove();
     var firstTab = $('#tabs a:first');
     $('#currentTabId').html($('#tabs a:first').attr('href').replace("#", "") + "Canvas");
-    firstTab.tab('show');
+    //firstTab.tab('show');
+    $('#tabs li:last-child a').tab('show');
   });
 
   //--- Add a tab
   $('#btnAddTab').click(function (e) {
 
-    var lastTab = $('#tabs a:last').attr('href').replace("#tab", "");
+    var lastTab = $('#tabs a:last').attr('href').replace("#panel", "");
     var nextTab = parseInt(lastTab) + 1
     var tabCount = $('#tabs li').length;
     var tabId = "tab" + nextTab;
+    var panelID = "panel" + nextTab;
     var canvasId = tabId + "Canvas";
+
+    console.log(tabCount);
+
 
     //--- Don't let them create more than five tabs.
     if (tabCount > 4) {
@@ -44,22 +49,20 @@
 
     //--- Create the tab
     var tabLabel = "Course " + nextTab;
-    var tabString = '<li class="nav-item">';
-    tabString += '<a href="#' + tabId + '" role="tab" data-toggle="tab">';
-    tabString += tabLabel + '&nbsp;'
-    tabString += '<button class="close" type="button" title="Remove this page">×</button>'
-    tabString += '</a>';
-    tabString += '</li>';
+    var tabString = '';
+    tabString+='<li class="nav-item">';
+    tabString+='<a class="nav-link" id="#' + tabId + '" data-toggle="tab" href="#' + panelID + '" role="tab" aria-controls="#' + tabId + '" aria-selected="true">' + tabLabel + '&nbsp;<button type="button" class="close" aria-label="Close" ><span aria-hidden="true">&times;</span></button></a>';
+    tabString+='</li>';
+
 
     //--- Create a holder for the tab content
-    var tabContent = '<div class="tab-pane" id="' + tabId + '">';
-    tabContent += '<h4>';
+    var tabContent ="";
+    tabContent += '<div class="tab-pane fade" id="' + panelID + '" role="tabpanel" aria-labelledby="tab1">';
     tabContent += '<span id="' + tabId + 'fileClubName">' + tabLabel + '</span><span id="' + tabId + 'fileCourseLevelAndClass"></span><span id="' + tabId + 'fileEventDate"></span>';
-    tabContent += '</h4>';
     tabContent += '<div class="designer" id="designer">';
     tabContent += '<div id="' + tabId + 'CourseId" class="label label-default"></div>';
     tabContent += '<canvas id="' + canvasId + '"></canvas>';
-    tabContent += '</div>';
+    tabContent += '</div>'; 
     tabContent += '</div>';
 
     //--- Add the new tab and new content holder.
@@ -69,5 +72,6 @@
     addCanvasToTab(canvasId)
 
     //-- Make the new tab active
-    $('#tabs a:last').tab('show');
+    //$('#tabs a:last').tab('show');
+    $('#tabs li:last-child a').tab('show');
   });
