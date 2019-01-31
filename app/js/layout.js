@@ -4,6 +4,8 @@ $(document).ready(function () {
   //--- I want to open the app and go right into the designer.
   drawGridInTab(canvas);
   drawNumbersInTab(canvas);
+  $('#currentTabId').html("panel1Canvas");
+  
   //--------------------------------------------------------------------------------------
 
 

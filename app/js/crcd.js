@@ -6,7 +6,7 @@
 //--- This is the only allowable reference to the drawing canvas.
 //--------------------------------------------------------------------------------------
 //--- Main canvas for drawing.
-var canvas = this.__canvas = new fabric.Canvas('tab1Canvas', {
+var canvas = this.__canvas = new fabric.Canvas('panel1Canvas', {
   backgroundColor: 'rgb(255,255,255)'
 });
 

@@ -36,7 +36,7 @@
     var tabCount = $('#tabs li').length;
     var tabId = "tab" + nextTab;
     var panelID = "panel" + nextTab;
-    var canvasId = tabId + "Canvas";
+    var canvasId = panelID + "Canvas";
 
     console.log(tabCount);
 

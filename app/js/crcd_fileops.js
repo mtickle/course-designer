@@ -5,10 +5,11 @@ function saveCourseToLocalStorage(mode) {
 
   //--- First things first ... which canvas is open?
    var currentCanvas = $('#currentTabId').html();
+   console.log(currentCanvas)
    var courseIdHolder = "#" + currentCanvas.replace("Canvas","CourseId")
    var tabId = currentCanvas.replace("Canvas","")
-console.log(currentCanvas)
-console.log(courseIdHolder)
+
+console.log(mode)
 
   //--- Turn the canvas into JSON and keep it.
   //var json = JSON.stringify(canvas);
@@ -22,6 +23,8 @@ console.log(courseIdHolder)
   } else if (mode == "new") {
     var currentUuid = "";
   }
+
+  //--- activate save button
 
   //--- If currentUuid has a value, then this course map has already been saved 
   //--- at least once. Set uuid to currentUuid so we UPDATE the values in 
@@ -37,7 +40,7 @@ console.log(courseIdHolder)
 
   //--- Save this on the page so we can do all that magic that we just
   //--- did above.
-  $(courseIdHolder).html(uuid);
+  $("#courseId").html(uuid);
 
 
   //--- Get these values from the form. Internal storage is limited to 
@@ -66,21 +69,28 @@ console.log(courseIdHolder)
   $('#' + tabId + 'fileClubName').text(clubName + " - ");
   $('#' + tabId + 'fileCourseLevelAndClass').text(levelName + " " + className + " - ");
   $('#' + tabId + 'fileEventDate').text(eventDate);
-  $('#exportToJSON').show();
+  $('#exportToJSON').prop( "disabled", false );
+
 
   //--- Make a sexy notification.
-  $.notify(statusMessage, {
-    type: 'success',
-    delay: 3000,
+  $.notify({
+    message: statusMessage,
+  },{
+    delay: "3000",
+    type: "success",
     placement: {
       from: "top",
       align: "center"
     },
     animate: {
-      enter: 'animated bounceInDown',
-      exit: 'animated bounceOutUp'
-    }
+      enter: 'animated fadeInDown',
+      exit: 'animated fadeOutUp'
+    },
   });
+
+
+
+
 }
 
 

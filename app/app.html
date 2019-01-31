@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CRCD v5</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
   <link href=css/app.css rel=stylesheet>
 </head>
 
@@ -28,6 +28,8 @@
                   <li class="nav-item"><a class="nav-link" href="#" id="openCourseLibrary">Course Library</a></li>
                   <li class="nav-item"><a class="nav-link" href="#" id="openObjectTally">Object Tally</a></li>
                   <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#"><div id="currentTabId"></div></a></li>
+                  <li class="nav-item"><a class="nav-link" href="#"><div id="courseId"></div></a></li>
               </ul>
             </div>
       </nav>
@@ -51,7 +53,7 @@
                   <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         <button type="button" class="btn btn-light btn-block" id="btnAddTab">Add Tab</a></li>
-                          <button type="button" class="btn btn-light btn-block" id="exportToJSON">Save</button>
+                          <button type="button" class="btn btn-light btn-block " disabled id="exportToJSON">Save</button>
                           <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#createACourseModal">Save As ... </button>
                           <button type="button" class="btn btn-light btn-block" id="exportToPNG"> Export </button>                 
                     </div>
@@ -127,21 +129,47 @@
                         <span id="fileEventDate"></span>                        
                         <div class="designer" id="designer">
                           <div id="tab1CourseId" class="label label-default"></div>
-                          <canvas id="tab1Canvas"></canvas>
+                          <canvas id="panel1Canvas"></canvas>
                         </div> 
                     </div>                  
                 </div>
               </div>
             </div>
+    </div>
+
+    <div id="courseLibraryContainer" style="display:none;">
+      <div class="row">
+          <div class="col-lg-12" id="courseLibrary">
+              <p>Here are all your saved courses. You can open or delete them.</p>
+              <table id="courseLibraryTable" class="table table-hover">
+                <thead>
+                  <th>Saved Date</th>
+                  <th>Level</th>
+                  <th>Class</th>
+                  <th>Club</th>
+                  <th>Event Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
           </div>
-        </div>
       </div>
+    </div>
+    
+  </div>
+</div>
       <!-- END Designer container -->
 
 
 
       <!-- This is the containter for the course library -->
-      <div id="courseLibraryContainer" style="display:none;">
+
+      <!-- <div id="courseLibraryContainer" style="display:none;">
+        <div class="row">
+            <div class="col-lg-10" id="content">
+
         <p>Here are all your saved courses. You can open or delete them.</p>
         <table id="courseLibraryTable" class="table table-hover">
           <thead>
@@ -157,6 +185,10 @@
           </tbody>
         </table>
       </div>
+      </div>
+    </div> -->
+
+
       <!-- End course library container -->
       <!--- Here is the object tally list -->
       <div id="objectTallyContainer" style="display:none;">
@@ -358,7 +390,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           
             <h4 class="modal-title" id="myModalLabel">Course Map Properties</h4>
           </div>
           <div class="modal-body">
@@ -430,21 +462,14 @@
     }
   </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.6.0/fabric.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-waitingfor/1.2.7/bootstrap-waitingfor.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"></script>
-
-  <!-- <script src='js/fabric.js'></script>   -->
+  
+  <script src='js/fabric.min.js'></script> 
   <!-- <script src='js/angular.min.js'></script> -->
   <script src='js/fabricExtensions.js'></script>
-  <!-- <script src='js/jquery.min.js'></script> -->
-  <!-- <script src='js/waitingfor.js'></script> -->
-  <!-- <script src='js/bootstrap.min.js'></script> -->
-  <!-- <script src="js/bootstrap-notify.js"></script> -->
+  <script src='js/jquery-3.3.1.min.js'></script>
+  <script src='js/waitingfor.js'></script> 
+  <script src='js/bootstrap.min.js'></script>
+  <script src="js/bootstrap-notify.js"></script> 
 
   <!-- internal scripts -->
   <script src="js/layout.js"></script>
